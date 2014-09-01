@@ -44,7 +44,7 @@ var TECLA_ARRIBA    = 38,
     CANVAS_WIDTH    = 512,
     CANVAS_HEIGHT   = 480;
     SUBIR_DIFICULTAD = 5; // Cada cuantas capturas subir velocidad
-    SUBIR_VELOCIDAD = 30; // Cuanta velocidad subir al icnrementarse la dificultad
+    SUBIR_VELOCIDAD = 25; // Cuanta velocidad subir al icnrementarse la dificultad
     
 var pokemonGraveyard = new Array();
 
@@ -77,7 +77,8 @@ var pokemonImage = new Image();
 pokemonImage.onload = function () {
     pokemonReady = true;
 };
-pokemonImage.src = "images/"+pokemon_select+".png";
+pokemon_minuscula = pokemon_select.toLowerCase();
+pokemonImage.src = "images/"+pokemon_minuscula+".png";
 
 // Imagen de la pokebola
 var pokebolaReady = false;
@@ -90,10 +91,10 @@ pokebolaImage.src = "images/pokebola.png";
 // Velocidad del personaje y pokemon
 
 var personaje = {
-    speed: 256 // movimiento de píxeles por segundo
+    speed: 250 // movimiento de píxeles por segundo
 };
 var pokemon = {
-    speed : 30  // movimiento de píxeles por segundo
+    speed : 25  // movimiento de píxeles por segundo
 };
 var pokemonsCaught = 0;
 var incrementador = 0;
