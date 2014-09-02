@@ -1,4 +1,4 @@
-<h1>Pokegame v1.0</h1>
+<h1>Pokered v1.0</h1>
 
 <p>Muevete con las teclas ariba, abajo, derecha e izquierda y atrapa al pokemon que hayas elegido. Cada vez que atrapes 5 pokemones su velocidad subirá.</p>
 
