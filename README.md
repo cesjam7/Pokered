@@ -6,4 +6,4 @@
 
 <p>Se le adaptó a una versión de pokemon permitiendo elegir qué pokemon capturar y se agregó niveles de dificultad.</p>
 
-<p>Puedes jugar desde este enlace: <a href="http://cesaraquino.info/pokegame" target="blank">http://cesaraquino.info/pokegame</a></p>
+<p>Puedes jugar desde este enlace: <a href="http://cesaraquino.info/pokered" target="blank">http://cesaraquino.info/pokegame</a></p>
