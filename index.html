@@ -1,16 +1,41 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
 	<meta charset="UTF-8">
-	<title>Pokegame</title>
+	<title>Pokered - Desarrollado por César Aquino Maximiliano</title>
+	<link rel="stylesheet" href="css/normalize.css">
+	<link rel="stylesheet" href="css/estilo.css">
+	<script type="text/javascript" src="js/modernizr.js"></script>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 </head>
 <body>
-<h1>Pokegame v1.0</h1>
-<p>Muevete con las teclas ariba, abajo, derecha e izquierda y atrapa al pokemon que hayas elegido. Cada vez que atrapes 5 pokemones su velocidad subirá.<br>
-	Código original de <a href="http://www.lostdecadegames.com/how-to-make-a-simple-html5-canvas-game/" target="blank">Lost Decade Games</a> y editado por <a href="http://cesaraquino.info">César Aquino Maximiliano</a>.</p>
-	<script src="js/game.js"></script>
+<div class="contenedor">
+	<h1>Pokered v1.0</h1>
+	<div class="juego">
+		<script src="js/game.js"></script>
+	</div>
+	<div class="info">
+		<h2>Desarrollo:</h2>
+		<p><b>Código original:</b> <a href="http://www.lostdecadegames.com/how-to-make-a-simple-html5-canvas-game/" target="_blank">Lost Decade Games</a>.<br><b>Desarrollado por</b> <a href="http://cesaraquino.info" target="_blank">César Aquino Maximiliano</a> <a href="http://twitter.com/jovenred" target="blank">(@jovenred)</a>.<br>
+		<b>Descargar:</b> <a href="https://github.com/jovenred/Pokered" target="_blank">Pokered - GitHub</a></p>
+		<h2>Cómo jugar</h2>
+		<p>Muevete con las flechas ariba, abajo, derecha e izquierda y atrapa al pokemon que hayas elegido. Su velocidad irá subiendo cada cierto tiempo y luego de capturar a 10 envolucionará.</p>
+	</div>
+	<div class="cl"></div>
+	<p><input type="button" value="Elegir otro pokemon" onClick="window.location.reload()" style="position: fixed; bottom: 10px; left: 10px;"></p>
+</div>
+<!-- Inicio Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-<p><input type="button" value="Elegir otro pokemon" onClick="window.location.reload()" style="position: fixed; bottom: 10px; left: 10px;"></p>
+  ga('create', 'UA-28370485-4', 'auto');
+  ga('send', 'pageview');
 
+</script>
+<!-- Fin analytics -->
 </body>
 </html>

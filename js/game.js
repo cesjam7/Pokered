@@ -1,39 +1,50 @@
 /*
 Visto en: http://self_loving.blogspot.com/2013/01/como-crear-un-sencillo-juego-con.html
 
-Editado por: César Jefferson Aquino Maximiliano
+Editado por: CÃ©sar Jefferson Aquino Maximiliano
 Sitio web: http://cesaraquino.com
 
 */
 
 
 // DEFINIR VARIABLES QUE INDICA EL JUGADOR
+var nombre = prompt("¿Como te llamas?", "");
 var user_pokemon = prompt("¿Elige tu pokemon? Escribe el numero\n1.- Charmander\n2.- Squirtle\n3.- Bulbasaur", "");
+
+if(nombre=="" || nombre==null){
+    nombre = "Innombrable";
+}
 
 if(user_pokemon > 0 && user_pokemon<  4)
 {
 
-	if(user_pokemon==1) {
-		pokemon_select = "Charmander";
-	
-	} else if(user_pokemon==2) {
-		pokemon_select = "Squirtle";
-	
-	} else if(user_pokemon==3) {
-		pokemon_select = "Bulbasaur";
-	}
+    if(user_pokemon==1) {
+        pokemon_select_1 = "Charmander";
+        pokemon_select_2 = "Charmeleon";
+        pokemon_select_3 = "Charizard";
+    
+    } else if(user_pokemon==2) {
+        pokemon_select_1 = "Squirtle";
+        pokemon_select_2 = "Wartotle";
+        pokemon_select_3 = "Blastoise";
+    
+    } else if(user_pokemon==3) {
+        pokemon_select_1 = "Bulbasaur";
+        pokemon_select_2 = "Ivysaur";
+        pokemon_select_3 = "Venusaur";
+    }
 
 }
 else
 {
-	confirmar = confirm("Tienes que ingresar 1, 2 o 3\n\nSi pones cancelar se cargará por defecto a Charmander");
-	
-	if (confirmar) {
-		window.location.reload();
-	
-	} else { 
-		pokemon_select = "Charmander"; 
-	} 
+    confirmar = confirm("Tienes que ingresar 1, 2 o 3\n\nSi pones cancelar se cargara por defecto a Charmander");
+    
+    if (confirmar) {
+        window.location.reload();
+    
+    } else { 
+        pokemon_select_1 = "Charmander"; 
+    } 
 
 }
 // Definir constantes
@@ -43,8 +54,11 @@ var TECLA_ARRIBA    = 38,
     TECLA_IZQUIERDA = 37,
     CANVAS_WIDTH    = 512,
     CANVAS_HEIGHT   = 480;
-    SUBIR_DIFICULTAD = 5; // Cada cuantas capturas subir velocidad
-    SUBIR_VELOCIDAD = 25; // Cuanta velocidad subir al icnrementarse la dificultad
+    SUBIR_DIFICULTAD = 2; // Cada cuantas capturas subir velocidad
+    SUBIR_VELOCIDAD_PK = 10; // Cuanta velocidad subir al pokemon
+    SUBIR_VELOCIDAD_PS = 2; // Cuanta velocidad subir al personaje
+    PRIMERA_EVOLUCION = 10; // Debo atrapar esta cantidad para que evolucione
+    SEGUNDA_EVOLUCION = 25; // Debo atrapar esta cantidad para que evolucione
     
 var pokemonGraveyard = new Array();
 
@@ -77,8 +91,8 @@ var pokemonImage = new Image();
 pokemonImage.onload = function () {
     pokemonReady = true;
 };
-pokemon_minuscula = pokemon_select.toLowerCase();
-pokemonImage.src = "images/"+pokemon_minuscula+".png";
+pokemonImage.src = "images/"+pokemon_select_1.toLowerCase()+".png";
+pokemon_nombre = pokemon_select_1;
 
 // Imagen de la pokebola
 var pokebolaReady = false;
@@ -91,10 +105,10 @@ pokebolaImage.src = "images/pokebola.png";
 // Velocidad del personaje y pokemon
 
 var personaje = {
-    speed: 250 // movimiento de píxeles por segundo
+    speed: 250 // movimiento de pÃ­xeles por segundo
 };
 var pokemon = {
-    speed : 25  // movimiento de píxeles por segundo
+    speed : 20  // movimiento de pÃ­xeles por segundo
 };
 var pokemonsCaught = 0;
 var incrementador = 0;
@@ -119,7 +133,7 @@ var reset = function () {
         personaje.y = canvas.height / 2;
         start = false;
     }
-    // Poner los personajes en algún lugar aleatoriamente
+    // Poner los personajes en algÃºn lugar aleatoriamente
     pokemon.x = 32 + (Math.random() * (canvas.width - 64));
     pokemon.y = 32 + (Math.random() * (canvas.height - 64));
     pokemon.speed = (pokemon.speed > 100 ) ? ( pokemon.speed) : (pokemon.speed + pokemonsCaught);
@@ -161,8 +175,18 @@ var update = function (modifier) {
 
         incrementador++;
         if(incrementador == SUBIR_DIFICULTAD){
-        	pokemon.speed = pokemon.speed + SUBIR_VELOCIDAD;
-        	incrementador = 0;
+            pokemon.speed = pokemon.speed + SUBIR_VELOCIDAD_PK;
+            personaje.speed = personaje.speed + SUBIR_VELOCIDAD_PS;
+            incrementador = 0;
+        }
+
+        if(pokemonsCaught == PRIMERA_EVOLUCION){
+            pokemonImage.src = "images/"+pokemon_select_2.toLowerCase()+".png";
+            pokemon_nombre = pokemon_select_2;
+        }
+        if(pokemonsCaught == SEGUNDA_EVOLUCION){
+            pokemonImage.src = "images/"+pokemon_select_3.toLowerCase()+".png";
+            pokemon_nombre = pokemon_select_3;
         }
 
         reset();   
@@ -170,7 +194,14 @@ var update = function (modifier) {
 };
 
 
-// Encerrar poekbola
+
+
+
+
+
+
+
+// Encerrar pokebola
 var render = function () {
     if (bgReady) {
         ctx.drawImage(bgImage, 0, 0);
@@ -191,12 +222,12 @@ var render = function () {
     }
 
 
-    // Puntuación
+    // PuntuaciÃ³n
     ctx.fillStyle = "rgb(250, 250, 250)";
     ctx.font = "24px Helvetica";
     ctx.textAlign = "left";
     ctx.textBaseline = "top";
-    ctx.fillText(pokemon_select+"s atrapados: " + pokemonsCaught, 32, 32);
+    ctx.fillText(nombre+" atrapo "+pokemonsCaught+" "+pokemon_nombre+"s", 32, 32);
 };
 
 // Bucle del juego
@@ -213,4 +244,4 @@ var main = function () {
 // Empecemos a jugar
 reset();
 var then = Date.now();
-setInterval(main, 1); // Ejecutar lo más rapido posible
+setInterval(main, 1); // Ejecutar lo mÃ¡s rapido posible

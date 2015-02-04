@@ -1,0 +1,22 @@
+body {
+	font-family: Open Sans;
+}
+canvas {
+	position: fixed;
+	top: 100px;
+	left: 50%;
+	margin-left: -500px;
+}
+.contenedor {
+	width: 1000px;
+	margin: 0 auto;
+}
+.juego {
+	float: left;
+	width: 560px;
+	height: 500px;
+}
+.info {
+	float: left;
+	width: 440px;
+}
